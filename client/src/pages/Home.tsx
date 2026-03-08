@@ -1,6 +1,7 @@
 import { CONTACT_INFO, FEATURED_IMAGES, WHATSAPP_MESSAGES, SERVICES, COMPANY_INFO } from '@/lib/constants';
 import { MapPin, MessageCircle, Star, Users, Award, CheckCircle2, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Gallery from '@/components/Gallery';
 
 export default function Home() {
   const handleWhatsApp = (message: string) => {
@@ -157,9 +158,34 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
+
+        {/* Gallery Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="mt-24 pt-24 border-t border-blue-600/10"
+        >
+          <Gallery
+            images={[
+              '/assets/images/galeria/foto_1.jpeg',
+              '/assets/images/galeria/foto_2.jpeg',
+              '/assets/images/galeria/foto_3.jpeg',
+              '/assets/images/galeria/foto_4.jpeg',
+              '/assets/images/galeria/foto_5.jpeg',
+              '/assets/images/galeria/foto_6.jpeg',
+              '/assets/images/galeria/foto_7.jpeg',
+              '/assets/images/galeria/foto_8.jpeg',
+              '/assets/images/galeria/foto_9.jpeg',
+            ]}
+            title="Conheça Meu Trabalho"
+            autoPlayInterval={2.2}
+          />
+        </motion.div>
       </section>
 
-      {/* About Section */}
+      {/* Stats Section */}
       <section id="about" className="py-32 md:py-48 bg-gradient-to-br from-blue-600/5 via-transparent to-blue-600/5 border-y border-blue-600/10">
         <div className="container px-6 md:px-8 lg:px-12 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center">
@@ -412,12 +438,12 @@ export default function Home() {
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="relative p-20 md:p-40 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-700 rounded-[5rem] overflow-hidden text-center text-white shadow-2xl hover:shadow-3xl transition-all duration-700 group"
+          className="relative p-16 md:p-32 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-700 rounded-[5rem] overflow-hidden text-center text-white shadow-2xl hover:shadow-3xl transition-all duration-700 group"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.2),transparent)] opacity-50 group-hover:scale-110 transition-transform duration-1000" />
-          <div className="relative z-10 space-y-12 max-w-5xl mx-auto">
-            <h2 className="text-6xl md:text-9xl font-black tracking-tighter leading-none">Comece sua Transformação</h2>
-            <p className="text-2xl md:text-3xl text-blue-50/90 font-bold leading-relaxed">Agende sua avaliação e dê o primeiro passo para uma vida com mais movimento e melhor qualidade de vida.</p>
+          <div className="relative z-10 space-y-10 max-w-4xl mx-auto">
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-tight">Comece sua Transformação</h2>
+            <p className="text-lg md:text-2xl text-blue-50/90 font-bold leading-relaxed">Agende sua avaliação e dê o primeiro passo para uma vida com mais movimento e melhor qualidade de vida.</p>
             <motion.button
               whileHover={{ scale: 1.1, y: -10 }}
               whileTap={{ scale: 0.9 }}

@@ -167,13 +167,13 @@ Este site pode conter links para serviços de terceiros que usam seus próprios 
             >
               <h4 className="font-black text-foreground mb-8 uppercase tracking-widest text-xs opacity-50">Contato</h4>
               <div className="space-y-6 text-sm text-muted-foreground">
-                <div className="flex flex-col gap-1 items-center lg:items-start">
-                  <span className="text-blue-600 font-black text-[10px] uppercase tracking-widest mb-1">WhatsApp</span>
+                <div className="flex flex-col gap-2 items-center lg:items-start">
+                  <span className="text-blue-600 font-black text-[10px] uppercase tracking-widest">WhatsApp</span>
                   <p className="font-bold text-lg text-foreground hover:text-blue-600 transition-colors duration-300 cursor-default">{CONTACT_INFO.phone}</p>
                 </div>
-                <div className="flex flex-col gap-1 items-center lg:items-start">
-                  <span className="text-blue-600 font-black text-[10px] uppercase tracking-widest mb-1">Email</span>
-                  <a href={`mailto:${CONTACT_INFO.email}`} className="font-bold text-lg text-foreground hover:text-blue-600 transition-colors duration-300 cursor-pointer break-all">
+                <div className="flex flex-col gap-2 items-center lg:items-start">
+                  <span className="text-blue-600 font-black text-[10px] uppercase tracking-widest">Email</span>
+                  <a href={`mailto:${CONTACT_INFO.email}`} className="font-bold text-sm text-foreground hover:text-blue-600 transition-colors duration-300 cursor-pointer break-all">
                     {CONTACT_INFO.email}
                   </a>
                 </div>
@@ -198,11 +198,11 @@ Este site pode conter links para serviços de terceiros que usam seus próprios 
             </div>
           </div>
 
-          {/* Copyright & Scroll to Top */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left text-[10px] sm:text-xs text-muted-foreground/60 font-bold uppercase tracking-widest">
+          {/* Copyright & Scroll to Top - CENTRALIZADO */}
+          <div className="flex flex-col items-center justify-center gap-8 text-center text-[10px] sm:text-xs text-muted-foreground/60 font-bold uppercase tracking-widest">
             <div>
               <p className="mb-2">
-                © {COMPANY_INFO.year} {COMPANY_INFO.name}.
+                © {COMPANY_INFO.year} {COMPANY_INFO.name}. Todos os direitos reservados.
               </p>
               <p>
                 Desenvolvido por{' '}
