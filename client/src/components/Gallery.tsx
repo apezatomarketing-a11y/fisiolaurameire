@@ -165,19 +165,6 @@ export default function Gallery({ images, title = 'Galeria', autoPlayInterval = 
           </motion.button>
         ))}
       </motion.div>
-
-      {/* Info Text */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.3 }}
-        className="mt-12 text-center"
-      >
-        <p className="text-muted-foreground font-bold text-base md:text-lg">
-          Clique nos pontos ou thumbnails para navegar • Auto-play a cada {autoPlayInterval}s
-        </p>
-      </motion.div>
     </div>
   );
 }

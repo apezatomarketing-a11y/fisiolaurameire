@@ -158,34 +158,9 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
-
-        {/* Gallery Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="mt-24 pt-24 border-t border-blue-600/10"
-        >
-          <Gallery
-            images={[
-              '/assets/images/galeria/foto_1.jpeg',
-              '/assets/images/galeria/foto_2.jpeg',
-              '/assets/images/galeria/foto_3.jpeg',
-              '/assets/images/galeria/foto_4.jpeg',
-              '/assets/images/galeria/foto_5.jpeg',
-              '/assets/images/galeria/foto_6.jpeg',
-              '/assets/images/galeria/foto_7.jpeg',
-              '/assets/images/galeria/foto_8.jpeg',
-              '/assets/images/galeria/foto_9.jpeg',
-            ]}
-            title="Conheça Meu Trabalho"
-            autoPlayInterval={2.2}
-          />
-        </motion.div>
       </section>
 
-      {/* Stats Section */}
+      {/* About Section */}
       <section id="about" className="py-32 md:py-48 bg-gradient-to-br from-blue-600/5 via-transparent to-blue-600/5 border-y border-blue-600/10">
         <div className="container px-6 md:px-8 lg:px-12 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center">
@@ -268,8 +243,36 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Gallery Section - MOVED HERE between About and Services */}
+      <section className="py-24 bg-background overflow-hidden">
+        <div className="container px-6 md:px-8 lg:px-12 max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          >
+            <Gallery
+              images={[
+                '/assets/images/galeria/foto_1.jpeg',
+                '/assets/images/galeria/foto_2.jpeg',
+                '/assets/images/galeria/foto_3.jpeg',
+                '/assets/images/galeria/foto_4.jpeg',
+                '/assets/images/galeria/foto_5.jpeg',
+                '/assets/images/galeria/foto_6.jpeg',
+                '/assets/images/galeria/foto_7.jpeg',
+                '/assets/images/galeria/foto_8.jpeg',
+                '/assets/images/galeria/foto_9.jpeg',
+              ]}
+              title="Conheça Meu Trabalho"
+              autoPlayInterval={2.2}
+            />
+          </motion.div>
+        </div>
+      </section>
+
       {/* Services Section */}
-      <section id="services" className="py-32 md:py-48 bg-background">
+      <section id="services" className="py-32 md:py-48 bg-muted/5">
         <div className="container px-6 md:px-8 lg:px-12 max-w-7xl mx-auto">
           <motion.div 
             {...fadeInUp}
