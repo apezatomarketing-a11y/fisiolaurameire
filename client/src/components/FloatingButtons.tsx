@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
 import { MessageCircle, ArrowUp } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { CONTACT_INFO, WHATSAPP_MESSAGES } from '@/lib/constants';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function FloatingButtons() {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -25,30 +26,58 @@ export default function FloatingButtons() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[60] flex flex-col gap-4">
-      {/* Scroll to Top Button */}
-      <button
-        onClick={handleScrollTop}
-        className={`
-          p-4 bg-card/80 backdrop-blur-md border border-border text-blue-600 rounded-2xl shadow-xl 
-          transition-all duration-500 hover:bg-blue-600 hover:text-white hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-600/50
-          cursor-pointer active:scale-95
-          ${showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}
-        `}
-        title="Voltar ao topo"
-      >
-        <ArrowUp size={24} className="group-hover:scale-110 transition-transform duration-300" />
-      </button>
+    <div className="fixed bottom-8 right-8 z-50 flex flex-col gap-4">
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0, y: 20 }}
+            whileHover={{ scale: 1.1, y: -5 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={handleScrollTop}
+            className="p-4 bg-background border-2 border-blue-600/20 text-blue-600 rounded-2xl shadow-2xl cursor-pointer hover:bg-blue-600 hover:text-white transition-all duration-500 group"
+            aria-label="Voltar ao topo"
+          >
+            <ArrowUp size={24} className="group-hover:-translate-y-1 transition-transform" />
+          </motion.button>
+        )}
+      </AnimatePresence>
 
-      {/* WhatsApp Button */}
-      <button
-        onClick={handleWhatsAppClick}
-        className="group relative p-4 bg-green-500 text-white rounded-2xl shadow-xl shadow-green-500/20 transition-all duration-500 hover:scale-110 hover:-rotate-6 active:scale-95 cursor-pointer hover:shadow-2xl hover:shadow-green-500/50"
-        title="Enviar mensagem via WhatsApp"
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="relative"
       >
-        <div className="absolute inset-0 bg-green-400 rounded-2xl animate-ping opacity-20 group-hover:hidden" />
-        <MessageCircle size={24} className="relative z-10 group-hover:scale-110 transition-transform duration-300" />
-      </button>
+        {/* Pulse effect */}
+        <motion.div
+          animate={{ scale: [1, 1.4, 1], opacity: [0.5, 0, 0.5] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute inset-0 bg-green-500 rounded-full blur-xl"
+        />
+        
+        <motion.button
+          whileHover={{ scale: 1.1, rotate: 10 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={handleWhatsAppClick}
+          className="relative p-5 bg-green-500 text-white rounded-2xl shadow-2xl cursor-pointer hover:bg-green-600 transition-all duration-500 group overflow-hidden"
+          aria-label="Falar no WhatsApp"
+        >
+          <motion.div
+            animate={{ rotate: [0, -10, 10, -10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+          >
+            <MessageCircle size={32} className="fill-white/20" />
+          </motion.div>
+          
+          {/* Shine effect */}
+          <motion.div
+            animate={{ x: ['-100%', '200%'] }}
+            transition={{ duration: 3, repeat: Infinity, repeatDelay: 1 }}
+            className="absolute top-0 left-0 w-1/2 h-full bg-white/20 skew-x-12"
+          />
+        </motion.button>
+      </motion.div>
     </div>
   );
 }
