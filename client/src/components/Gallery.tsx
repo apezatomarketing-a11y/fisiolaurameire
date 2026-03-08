@@ -56,7 +56,7 @@ export default function Gallery({ images, title = 'Galeria', autoPlayInterval = 
         </motion.h3>
       )}
 
-      <div className="relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[3rem] overflow-hidden shadow-2xl group bg-muted">
+      <div className="relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[3rem] overflow-hidden shadow-2xl group bg-muted/30">
         <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
             key={activeIndex}
@@ -69,14 +69,24 @@ export default function Gallery({ images, title = 'Galeria', autoPlayInterval = 
               x: { type: 'spring', stiffness: 300, damping: 30 },
               opacity: { duration: 0.5 },
             }}
-            className="absolute inset-0"
+            className="absolute inset-0 flex items-center justify-center p-4 md:p-8"
           >
+            {/* Background blurred image for a professional look */}
+            <div 
+              className="absolute inset-0 opacity-20 blur-2xl scale-110 pointer-events-none"
+              style={{ 
+                backgroundImage: `url(${images[activeIndex]})`,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover'
+              }}
+            />
+            
             <img
               src={images[activeIndex]}
               alt={`Foto ${activeIndex + 1}`}
-              className="w-full h-full object-cover"
+              className="relative z-10 w-full h-full object-contain rounded-2xl"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
           </motion.div>
         </AnimatePresence>
 
@@ -85,7 +95,7 @@ export default function Gallery({ images, title = 'Galeria', autoPlayInterval = 
           whileHover={{ scale: 1.1, x: -5 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => paginate(-1)}
-          className="absolute left-6 top-1/2 transform -translate-y-1/2 z-20 p-3 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full text-white transition-all duration-300 shadow-lg cursor-pointer"
+          className="absolute left-6 top-1/2 transform -translate-y-1/2 z-20 p-3 bg-blue-600/20 hover:bg-blue-600/40 backdrop-blur-md rounded-full text-white transition-all duration-300 shadow-lg cursor-pointer"
           aria-label="Foto anterior"
         >
           <ChevronLeft size={28} />
@@ -95,7 +105,7 @@ export default function Gallery({ images, title = 'Galeria', autoPlayInterval = 
           whileHover={{ scale: 1.1, x: 5 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => paginate(1)}
-          className="absolute right-6 top-1/2 transform -translate-y-1/2 z-20 p-3 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full text-white transition-all duration-300 shadow-lg cursor-pointer"
+          className="absolute right-6 top-1/2 transform -translate-y-1/2 z-20 p-3 bg-blue-600/20 hover:bg-blue-600/40 backdrop-blur-md rounded-full text-white transition-all duration-300 shadow-lg cursor-pointer"
           aria-label="Próxima foto"
         >
           <ChevronRight size={28} />
@@ -112,8 +122,8 @@ export default function Gallery({ images, title = 'Galeria', autoPlayInterval = 
               }}
               className={`transition-all duration-300 rounded-full cursor-pointer shadow-lg ${
                 idx === activeIndex
-                  ? 'bg-white w-8 h-3'
-                  : 'bg-white/50 w-3 h-3 hover:bg-white/80'
+                  ? 'bg-blue-600 w-8 h-3'
+                  : 'bg-blue-600/30 w-3 h-3 hover:bg-blue-600/60'
               }`}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
@@ -126,7 +136,7 @@ export default function Gallery({ images, title = 'Galeria', autoPlayInterval = 
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           key={activeIndex}
-          className="absolute top-8 right-8 z-20 px-5 py-2.5 bg-black/60 backdrop-blur-md rounded-full text-white font-black text-sm shadow-lg"
+          className="absolute top-8 right-8 z-20 px-5 py-2.5 bg-blue-600/80 backdrop-blur-md rounded-full text-white font-black text-sm shadow-lg"
         >
           {activeIndex + 1} / {images.length}
         </motion.div>
@@ -138,7 +148,7 @@ export default function Gallery({ images, title = 'Galeria', autoPlayInterval = 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2 }}
-        className="mt-8 flex gap-4 overflow-x-auto pb-4 px-4 md:px-0 md:justify-center flex-wrap"
+        className="mt-8 flex gap-4 overflow-x-auto pb-4 px-4 md:px-0 md:justify-center flex-nowrap md:flex-wrap"
       >
         {images.map((img, idx) => (
           <motion.button
@@ -147,7 +157,7 @@ export default function Gallery({ images, title = 'Galeria', autoPlayInterval = 
               setDirection(idx > activeIndex ? 1 : -1);
               setActiveIndex(idx);
             }}
-            className={`relative flex-shrink-0 w-24 h-24 rounded-2xl overflow-hidden border-3 transition-all duration-300 cursor-pointer shadow-md ${
+            className={`relative flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden border-3 transition-all duration-300 cursor-pointer shadow-md ${
               idx === activeIndex ? 'border-blue-600 shadow-lg shadow-blue-600/50 scale-110' : 'border-border hover:border-blue-600/50'
             }`}
             whileHover={{ scale: 1.05 }}
