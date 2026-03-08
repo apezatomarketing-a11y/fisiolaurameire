@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { useLocation } from 'wouter';
-import { Instagram, Facebook, Linkedin, Youtube, Mail } from 'lucide-react';
+import { Instagram, Mail, Globe } from 'lucide-react';
 import { FOOTER_LINKS, POLICY_LINKS, SOCIAL_MEDIA, COMPANY_INFO, CONTACT_INFO } from '@/lib/constants';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 export default function Footer() {
-  const [, navigate] = useLocation();
   const [openPolicy, setOpenPolicy] = useState<string | null>(null);
 
-  const handleNavigation = (href: string) => {
-    navigate(href);
-    window.scrollTo(0, 0);
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const policyContent = {
@@ -35,7 +35,7 @@ Implementamos medidas de segurança para proteger suas informações pessoais co
 Para questões sobre privacidade, entre em contato conosco através do email ou WhatsApp.`,
     terms: `Termos de Uso
 
-Bem-vindo ao site de Susi Farias Nutricionista. Ao acessar este site, você concorda com os seguintes termos:
+Bem-vindo ao site de Laura Meira Fisioterapia. Ao acessar este site, você concorda com os seguintes termos:
 
 1. Uso Autorizado
 Este site é fornecido apenas para fins informativos e educacionais. Você concorda em usar este site apenas para fins legais.
@@ -44,7 +44,7 @@ Este site é fornecido apenas para fins informativos e educacionais. Você conco
 As informações fornecidas neste site não substituem o aconselhamento profissional. Sempre consulte um profissional de saúde.
 
 3. Limitação de Responsabilidade
-Susi Farias não será responsável por danos indiretos, incidentais ou consequentes resultantes do uso deste site.
+Laura Meira não será responsável por danos indiretos, incidentais ou consequentes resultantes do uso deste site.
 
 4. Modificações
 Reservamos o direito de modificar estes termos a qualquer momento.
@@ -74,17 +74,17 @@ Este site pode conter links para serviços de terceiros que usam seus próprios 
     <>
       <footer className="bg-card border-t border-border mt-20 relative overflow-hidden">
         {/* Background Decorative Elements */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-30" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 opacity-30" />
         
-        <div className="container py-16 px-6 relative z-10">
+        <div className="container py-16 px-6 relative z-10 max-w-7xl mx-auto">
           {/* Main Footer Content */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-center lg:text-left">
             {/* Brand */}
             <div className="flex flex-col items-center lg:items-start group">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:rotate-6 group-hover:scale-110 transition-all duration-500 cursor-pointer">
-                <span className="text-white font-bold text-2xl">SF</span>
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:rotate-6 group-hover:scale-110 transition-all duration-500 cursor-pointer overflow-hidden">
+                <img src="/assets/images/logo.png" alt="Logo" className="w-full h-full object-contain p-2" />
               </div>
-              <h3 className="font-bold text-xl mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{COMPANY_INFO.name}</h3>
+              <h3 className="font-bold text-xl mb-3 bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">{COMPANY_INFO.name}</h3>
               <p className="text-sm text-muted-foreground font-medium max-w-[200px]">{COMPANY_INFO.tagline}</p>
             </div>
 
@@ -95,10 +95,11 @@ Este site pode conter links para serviços de terceiros que usam seus próprios 
                 {FOOTER_LINKS.map((link) => (
                   <button
                     key={link.label}
-                    onClick={() => handleNavigation(link.href)}
-                    className="block w-full lg:w-auto text-sm text-muted-foreground hover:text-primary hover:pl-2 transition-all duration-300 font-medium"
+                    onClick={() => scrollToSection(link.label.toLowerCase())}
+                    className="block w-full lg:w-auto text-sm text-muted-foreground hover:text-blue-600 hover:pl-2 transition-all duration-300 font-medium cursor-pointer group relative"
                   >
                     {link.label}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-blue-400 group-hover:w-full transition-all duration-300" />
                   </button>
                 ))}
               </nav>
@@ -109,21 +110,19 @@ Este site pode conter links para serviços de terceiros que usam seus próprios 
               <h4 className="font-bold text-foreground mb-6 uppercase tracking-wider text-xs">Conecte-se</h4>
               <div className="flex flex-wrap justify-center lg:justify-start gap-4">
                 {[
-                  { icon: Instagram, url: SOCIAL_MEDIA.instagram, label: 'Instagram' },
-                  { icon: Facebook, url: SOCIAL_MEDIA.facebook, label: 'Facebook' },
-                  { icon: Linkedin, url: SOCIAL_MEDIA.linkedin, label: 'LinkedIn' },
-                  { icon: Youtube, url: SOCIAL_MEDIA.youtube, label: 'YouTube' },
-                  { icon: Mail, url: `mailto:${CONTACT_INFO.email}`, label: 'Email' },
+                  { icon: Instagram, url: SOCIAL_MEDIA.instagram, label: 'Instagram', color: 'text-pink-500 hover:bg-pink-500' },
+                  { icon: Mail, url: `mailto:${CONTACT_INFO.email}`, label: 'Email', color: 'text-blue-600 hover:bg-blue-600' },
+                  { icon: Globe, url: SOCIAL_MEDIA.google, label: 'Google', color: 'text-red-500 hover:bg-red-500' },
                 ].map((social, idx) => (
                   <a
                     key={idx}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 bg-primary/5 hover:bg-primary text-primary hover:text-white rounded-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/20"
+                    className={`group p-3 bg-blue-600/5 ${social.color} rounded-xl transition-all duration-300 hover:-translate-y-2 hover:text-white hover:shadow-lg shadow-blue-600/20 cursor-pointer hover:scale-110 active:scale-95`}
                     title={social.label}
                   >
-                    <social.icon size={20} />
+                    <social.icon size={20} className="group-hover:scale-125 transition-transform duration-300" />
                   </a>
                 ))}
               </div>
@@ -134,12 +133,14 @@ Este site pode conter links para serviços de terceiros que usam seus próprios 
               <h4 className="font-bold text-foreground mb-6 uppercase tracking-wider text-xs">Contato</h4>
               <div className="space-y-4 text-sm text-muted-foreground">
                 <div className="flex flex-col gap-1">
-                  <span className="text-primary font-bold text-xs uppercase">WhatsApp</span>
-                  <p className="font-medium">{CONTACT_INFO.phone}</p>
+                  <span className="text-blue-600 font-bold text-xs uppercase">WhatsApp</span>
+                  <p className="font-medium hover:text-blue-600 transition-colors duration-300 cursor-default">{CONTACT_INFO.phone}</p>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="text-primary font-bold text-xs uppercase">Email</span>
-                  <p className="font-medium">{CONTACT_INFO.email}</p>
+                  <span className="text-blue-600 font-bold text-xs uppercase">Email</span>
+                  <a href={`mailto:${CONTACT_INFO.email}`} className="font-medium hover:text-blue-600 transition-colors duration-300 cursor-pointer">
+                    {CONTACT_INFO.email}
+                  </a>
                 </div>
               </div>
             </div>
@@ -152,9 +153,10 @@ Este site pode conter links para serviços de terceiros que usam seus próprios 
                 <button
                   key={link.label}
                   onClick={() => setOpenPolicy(link.label.toLowerCase().split(' ')[0])}
-                  className="text-muted-foreground hover:text-primary transition-colors duration-300"
+                  className="text-muted-foreground hover:text-blue-600 transition-all duration-300 cursor-pointer group relative"
                 >
                   {link.label}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-blue-400 group-hover:w-full transition-all duration-300" />
                 </button>
               ))}
             </div>
@@ -171,7 +173,7 @@ Este site pode conter links para serviços de terceiros que usam seus próprios 
                 href={COMPANY_INFO.developedByUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary/80 hover:text-primary hover:underline transition-colors"
+                className="text-blue-600/80 hover:text-blue-600 hover:underline transition-colors cursor-pointer"
               >
                 {COMPANY_INFO.developedBy}
               </a>
@@ -182,16 +184,16 @@ Este site pode conter links para serviços de terceiros que usam seus próprios 
 
       {/* Policy Dialogs */}
       <Dialog open={openPolicy !== null} onOpenChange={(open) => !open && setOpenPolicy(null)}>
-        <DialogContent className="max-w-[90vw] sm:max-w-lg max-h-[80vh] overflow-y-auto glass-effect border-primary/20 rounded-3xl">
+        <DialogContent className="max-w-[90vw] sm:max-w-lg max-h-[80vh] overflow-y-auto glass-effect border-blue-600/20 rounded-3xl animate-in fade-in zoom-in duration-300">
           <DialogHeader>
-            <DialogTitle className="text-xl sm:text-2xl font-bold text-primary">
+            <DialogTitle className="text-xl sm:text-2xl font-bold text-blue-600">
               {openPolicy === 'política' ? 'Política de Privacidade' : openPolicy === 'termos' ? 'Termos de Uso' : 'Política de Cookies'}
             </DialogTitle>
           </DialogHeader>
           <div className="whitespace-pre-wrap text-sm text-muted-foreground leading-relaxed">
             {openPolicy === 'política' && policyContent.privacy}
             {openPolicy === 'termos' && policyContent.terms}
-            {openPolicy === 'política' && policyContent.cookies}
+            {openPolicy === 'cookies' && policyContent.cookies}
           </div>
         </DialogContent>
       </Dialog>

@@ -30,23 +30,24 @@ export default function FloatingButtons() {
       <button
         onClick={handleScrollTop}
         className={`
-          p-4 bg-card/80 backdrop-blur-md border border-border text-primary rounded-2xl shadow-xl 
-          transition-all duration-500 hover:bg-primary hover:text-white hover:-translate-y-2
+          p-4 bg-card/80 backdrop-blur-md border border-border text-blue-600 rounded-2xl shadow-xl 
+          transition-all duration-500 hover:bg-blue-600 hover:text-white hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-600/50
+          cursor-pointer active:scale-95
           ${showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}
         `}
         title="Voltar ao topo"
       >
-        <ArrowUp size={24} />
+        <ArrowUp size={24} className="group-hover:scale-110 transition-transform duration-300" />
       </button>
 
       {/* WhatsApp Button */}
       <button
         onClick={handleWhatsAppClick}
-        className="group relative p-4 bg-green-500 text-white rounded-2xl shadow-xl shadow-green-500/20 transition-all duration-500 hover:scale-110 hover:-rotate-6 active:scale-95"
+        className="group relative p-4 bg-green-500 text-white rounded-2xl shadow-xl shadow-green-500/20 transition-all duration-500 hover:scale-110 hover:-rotate-6 active:scale-95 cursor-pointer hover:shadow-2xl hover:shadow-green-500/50"
         title="Enviar mensagem via WhatsApp"
       >
         <div className="absolute inset-0 bg-green-400 rounded-2xl animate-ping opacity-20 group-hover:hidden" />
-        <MessageCircle size={24} className="relative z-10" />
+        <MessageCircle size={24} className="relative z-10 group-hover:scale-110 transition-transform duration-300" />
       </button>
     </div>
   );

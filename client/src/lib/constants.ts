@@ -35,7 +35,6 @@ export const WHATSAPP_MESSAGES = {
   reabilitacaoNeuro: 'Tenho interesse em Reabilitação Neurofuncional. Pode me ajudar?',
   pediatria: 'Gostaria de informações sobre atendimento pediátrico. Como funciona?',
   adolescente: 'Tenho interesse em atendimento para adolescentes. Qual seria o melhor tratamento?',
-  ortese3d: 'Gostaria de conhecer mais sobre a confecção de órtese de impressão 3D. Pode me ajudar?',
   contact: 'Olá! Entrei em contato através do formulário de contato do seu site.',
   acompanhamentoDomiciliar: 'Tenho interesse em acompanhamento domiciliar. Como funciona?',
 } as const;
@@ -57,6 +56,7 @@ export const SERVICES = [
     price: 'R$ 150,00',
     icon: 'Activity',
     message: 'Gostaria de agendar Pilates 1x na semana. Qual é a disponibilidade?',
+    image: 'pilates_1x',
   },
   {
     id: 'pilates-2x',
@@ -65,6 +65,7 @@ export const SERVICES = [
     price: 'R$ 260,00',
     icon: 'Activity',
     message: 'Tenho interesse em Pilates 2x na semana. Pode me informar sobre disponibilidade?',
+    image: 'pilates_2x',
   },
   {
     id: 'pilates-3x',
@@ -73,6 +74,7 @@ export const SERVICES = [
     price: 'R$ 360,00',
     icon: 'Activity',
     message: 'Gostaria de agendar Pilates 3x na semana. Qual seria o melhor horário?',
+    image: 'pilates_3x',
   },
   {
     id: 'reabilitacao-neuro',
@@ -81,6 +83,7 @@ export const SERVICES = [
     price: 'À Consultar',
     icon: 'Stethoscope',
     message: 'Tenho interesse em Reabilitação Neurofuncional. Pode me ajudar?',
+    image: 'reabilitacao',
   },
   {
     id: 'pediatria',
@@ -89,14 +92,7 @@ export const SERVICES = [
     price: 'À Consultar',
     icon: 'Heart',
     message: 'Gostaria de informações sobre atendimento pediátrico. Como funciona?',
-  },
-  {
-    id: 'ortese-3d',
-    title: 'Órtese de Impressão 3D',
-    description: 'Confecção de órteses personalizadas com tecnologia de impressão 3D para reabilitação.',
-    price: 'À Consultar',
-    icon: 'Zap',
-    message: 'Gostaria de conhecer mais sobre a confecção de órtese de impressão 3D. Pode me ajudar?',
+    image: 'pediatria',
   },
 ] as const;
 
@@ -128,13 +124,14 @@ export const GALLERY_IMAGES = Array.from({ length: 9 }, (_, i) => ({
 
 // Featured Images
 export const FEATURED_IMAGES = {
-  home: '/assets/images/laura_hero.jpg',
-  aboutHighlight: '/assets/images/laura_sobre.jpg',
-  aboutAchievement: '/assets/images/laura_sobre.jpg',
-  pilates: '/assets/images/servico_pilates.jpg',
+  home: '/assets/images/logo.png',
+  aboutHighlight: '/assets/images/logo.png',
+  aboutAchievement: '/assets/images/logo.png',
+  pilates1x: '/assets/images/pilates_1x.jpg',
+  pilates2x: '/assets/images/pilates_2x.jpg',
+  pilates3x: '/assets/images/pilates_3x.jpg',
   reabilitacao: '/assets/images/servico_reabilitacao_neuro.jpg',
   pediatria: '/assets/images/servico_pediatria.jpg',
-  ortese: '/assets/images/servico_ortese_3d.jpg',
 } as const;
 
 // Videos
